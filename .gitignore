@@ -1,0 +1,19 @@
+
+pom.xml
+pom.xml.asc
+*.jar
+*.class
+.lein-deps-sum
+.lein-repl-history
+.lein-plugins/
+.lein-failures
+.nrepl-port
+.cpcache/
+
+# MacOS files
+.DS_Store
+
+# Project files
+.shadow-cljs
+node_modules
+resources/public/js

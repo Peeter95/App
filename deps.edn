@@ -1,0 +1,45 @@
+
+{:paths ["resources" "source-code"]
+ :deps  {
+         buddy/buddy-auth                                {:mvn/version "2.1.0"}
+         clj-http/clj-http                               {:mvn/version "3.12.3"}
+
+         hiccup/hiccup                                   {:mvn/version "1.0.5"}
+         http-kit/http-kit                               {:mvn/version "2.6.0"}
+         metosin/reitit                                  {:mvn/version "0.3.10"}
+         org.clojure/clojure                             {:mvn/version "1.10.1"}
+         org.clojure/clojurescript                       {:mvn/version "1.10.891"}
+         pez/clerk                                       {:mvn/version "1.0.0"}
+         re-frame/re-frame                               {:mvn/version "1.2.0"}
+         reagent/reagent                                 {:mvn/version "1.1.0"}
+         reagent-utils/reagent-utils                     {:mvn/version "0.3.3"}
+        
+         amalloy/ring-gzip-middleware                    {:mvn/version "0.1.4"}
+         ring/ring                                       {:mvn/version "1.9.0"}
+         ring/ring-defaults                              {:mvn/version "0.3.2"}
+         ring/ring-json                                  {:mvn/version "0.5.1"}
+         ring-server/ring-server                         {:mvn/version "0.5.0"}
+         ring-transit/ring-transit                       {:mvn/version "0.1.6"}
+         
+         tea-time/tea-time                               {:mvn/version "1.0.1"}
+         venantius/accountant                            {:mvn/version "0.2.5"}
+         yogthos/config                                  {:mvn/version "1.1.7"}
+ 
+         ; Shadow-cljs
+         thheller/shadow-cljs                            {:mvn/version "2.18.0"}}
+
+ :aliases
+ {
+  :app.dev   {:exec-args  {:port         3000 
+                           :shadow-build :app.dev}
+              :extra-deps {}
+              :exec-fn    backend.main/dev
+              :jvm-opts   ["-Dclojure.server.repl={:port,5555,:accept,clojure.core.server/repl}"]}
+
+  :prod      {:extra-deps {com.github.seancorfield/depstar {:mvn/version "2.0.211"}}
+              :exec-fn    compiler/compile!
+              :exec-args  {:java-config   {:aot        true 
+                                           :jar        "app.jar"
+                                           :jar-type   :uber 
+                                           :main-class backend.main}
+                           :shadow-builds [:app.prod]}}}}

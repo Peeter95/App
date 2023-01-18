@@ -1,0 +1,18 @@
+
+{:source-paths ["source-code"]
+ :builds
+ {
+  :app.dev    {:compiler-options {:infer-externs      true 
+                                  :output-feature-set :es-next}
+               :devtools         {:watch-dir  "resources" 
+                                  :after-load frontend.core/render!}
+               :modules          {:app {:init-fn frontend.core/start!}}
+               :output-dir       "resources/public/js"
+               :target           :browser}
+
+  :app.prod   {:compiler-options {:infer-externs      true 
+                                  :output-feature-set :es-next}
+               :modules          {:app {:init-fn frontend.core/start!}}
+               :output-dir       "resources/public/js"
+               :optimizations    :advanced
+               :target           :browser}}}
